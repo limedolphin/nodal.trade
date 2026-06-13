@@ -12,6 +12,14 @@ npx serve .
 python3 -m http.server 8000
 ```
 
+## Before every deploy — run QA
+
+```bash
+node qa-check.mjs   # must print "QA PASSED ✓"
+```
+
+This gate verifies the Market DNA values, favicon/OG assets, apex domain and brand against the reference. See `QA-CHECKLIST.md` for the full scenario (automated + manual visual checks). Do not deploy on a red gate.
+
 ## Deploy to Vercel
 
 **Option A — drag & drop (fastest)**

@@ -211,12 +211,16 @@
   .t-dna .chev{margin-left:auto;color:var(--faint);transition:transform .25s;font-size:9px}
   .t-dna .item.open .chev{transform:rotate(180deg)}
   .dna-detail{max-height:0;overflow:hidden;transition:max-height .4s ease;padding:0 6px}
-  .t-dna .item.open .dna-detail{max-height:240px}
+  .t-dna .item.open .dna-detail{max-height:320px}
   .dna-detail .dd{padding:2px 0 9px;font-size:10.5px;color:var(--muted);line-height:1.5}
   .dna-detail .chips{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0 8px}
   .dna-detail .chip{border:1px solid var(--border);border-radius:5px;padding:2px 7px;font-size:9.5px;color:var(--muted)}
   .dna-detail .chip b{color:var(--txt)}
   .dna-detail .src{font-size:9px;color:var(--faint);letter-spacing:.04em;padding-bottom:8px}
+  .dna-detail .stat{font-size:10.5px;line-height:1.5;margin:3px 0}
+  .dna-detail .stat b{color:var(--txt);font-weight:700}
+  .dna-detail .stat .sk{color:var(--muted);font-weight:600}
+  .dna-detail .stat .sn{color:var(--faint)}
   /* order executions */
   .term-exec{padding:14px 16px;border-top:1px solid var(--border);overflow-x:auto}
   .t-ex{width:100%;border-collapse:collapse;font-size:10.5px}
@@ -673,16 +677,16 @@
     const dna=[
       {col:'#f5a623',u:'S&P 500',reg:'High-volatility expansion',cls:'reg-hot',short:'Up but choppy, narrow leadership',
        dd:'S&P 500 is trending higher but realised volatility is elevated. Historically associated with narrow leadership, concentration, or late-cycle re-rating.',
-       sig:'15.4%',sigN:'above the 14% historical median — elevated',ret:'+12.2%',retN:'strong uptrend (≥ +10%)',asof:'2026-06-12',ana:'2023-02-07 (Recovery)',src:'yahoo:^GSPC'},
+       sig:'15.4%',sigN:'above the 14% historical median → elevated',ret:'+12.2%',retN:'strong uptrend (≥ +10%)',asof:'2026-06-12',ana:'2023-02-07 (Recovery)',src:'yahoo:%5EGSPC'},
       {col:'#ff5d6c',u:'Gold spot',reg:'Risk-off drawdown',cls:'reg-off',short:'Macro stress, 10%+ down',
        dd:'Gold spot is more than 10% below its 60-day level. Historically associated with macro stress, liquidity tightening, or sentiment shock.',
-       sig:'25.4%',sigN:'far above the 15% historical median — stressed',ret:'-13.8%',retN:'serious drawdown (≤ -10%)',asof:'2026-06-12',ana:'2020-11-25 (Correction)',src:'yahoo:GC=F'},
+       sig:'25.4%',sigN:'far above the 15% historical median → stressed',ret:'-13.8%',retN:'serious drawdown (≤ -10%)',asof:'2026-06-12',ana:'2020-11-25 (Correction)',src:'yahoo:GC%3DF'},
       {col:'#ff5d6c',u:'Bitcoin',reg:'Risk-off drawdown',cls:'reg-off',short:'Macro stress, 10%+ down',
        dd:'Bitcoin is more than 10% below its 60-day level. Historically associated with macro stress, liquidity tightening, or sentiment shock.',
-       sig:'39.2%',sigN:'well below the 60% historical median for this asset → unusually calm',ret:'-13.4%',retN:'serious drawdown (≤ -10%)',asof:'2026-06-13',ana:'2020-01-09 (Risk-off drawdown)',src:'BTC-USD'},
+       sig:'39.1%',sigN:'well below the 60% historical median for this asset → unusually calm',ret:'-13.4%',retN:'serious drawdown (≤ -10%)',asof:'2026-06-13',ana:'2020-01-09 (Risk-off drawdown)',src:'BTC-USD'},
       {col:'#4ade80',u:'EUR / USD',reg:'Low-volatility expansion',cls:'reg-exp',short:'Calm uptrend, broad participation',
        dd:'EUR / USD is trending higher with subdued realised volatility (σ20 below long-term median). Historically associated with broad participation and orderly behaviour.',
-       sig:'4.0%',sigN:'well below the 7% historical median for this asset → unusually calm',ret:'+0.1%',retN:'mild uptrend',asof:'2026-06-12',ana:'2024-03-07 (Low-volatility expansion)',src:'yahoo:EURUSD=X'}
+       sig:'4.0%',sigN:'well below the 7% historical median for this asset → unusually calm',ret:'+0.1%',retN:'mild uptrend',asof:'2026-06-12',ana:'2024-03-07 (Low-volatility expansion)',src:'yahoo:EURUSD%3DX'}
     ];
     const de=document.getElementById('dna');
     if(de){
@@ -691,8 +695,8 @@
           '<div class="row"><span class="ud"><i style="background:'+a.col+';box-shadow:0 0 7px '+a.col+'"></i>'+a.u+'</span>'+
           '<span class="reg '+a.cls+'">'+a.reg+'</span><span class="desc">'+a.short+'</span><span class="chev">▾</span></div>'+
           '<div class="dna-detail"><div class="dd">'+a.dd+'</div>'+
-            '<div class="chips"><span class="chip">σ <b>'+a.sig+'</b> &#183; '+a.sigN+'</span>'+
-            '<span class="chip">ret60 <b>'+a.ret+'</b> &#183; '+a.retN+'</span></div>'+
+            '<div class="stat"><span class="sk">σ</span> <b>'+a.sig+'</b> <span class="sn">— annualised 20-day realised volatility. '+a.sigN+'</span></div>'+
+            '<div class="stat"><span class="sk">ret60</span> <b>'+a.ret+'</b> <span class="sn">— total return over the last 60 trading days. '+a.retN+'</span></div>'+
             '<div class="src">As of '+a.asof+' &#183; nearest analogue: '+a.ana+' &#183; source: '+a.src+'</div></div>'+
         '</div>'
       )).join('');
