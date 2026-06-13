@@ -57,6 +57,16 @@ must("og:url must not use www", !has("https://www.nodal.trade"));
 must("wordmark not wrapped (Nodal . space bug)", (html.match(/class="wm"/g) || []).length >= 2);
 must("two-square logo mark missing", has('rx="2.5" fill="#f5a623"'));
 must("CTA button text should be black (#000)", has("background:var(--amber)") && has("color:#000"));
+// nav CTA must not be caught by the grey ".nav-links a" rule (specificity bug)
+must("nav link rule must exclude .nav-cta (else CTA text is grey)", has(".nav-links a:not(.nav-cta)"));
+must("plain '.nav-links a{color:var(--muted)' would override CTA — must be scoped",
+  !/\.nav-links a\{color:var\(--muted\)/.test(html));
+must("nav CTA black not enforced", has("color:#000 !important;background:var(--amber)"));
+
+// ---- Market DNA detail must be plain text, not boxed (.stat collision) ----
+must("Market DNA stat lines must use .dline (avoid boxed .stat card)", has('class="dline"'));
+must("Market DNA detail must not reuse .stat card class (adds a border box)", !html.includes("'<div class=\"stat\">"));
+must("stale '.dna-detail .stat' selector should be renamed to .dline", !has(".dna-detail .stat"));
 
 // ---- structure sanity ----
 must("closing tags missing", html.trim().endsWith("</html>"));
@@ -64,7 +74,7 @@ must("hero terminal preview missing", has('id="dna"') && has('id="exec"') && has
 
 if (fails.length) {
   console.error("QA FAILED — " + fails.length + " issue(s):");
-  fails.forEach((f) => console.error("  ✗ " + f));
+  fails.forEach((f) => console.error("  \u2717 " + f));
   process.exit(1);
 }
-console.log("QA PASSED ✓  Market DNA + deploy invariants verified.");
+console.log("QA PASSED \u2713  Market DNA + deploy invariants verified.");

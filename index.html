@@ -100,11 +100,11 @@
   .brand .dot{color:var(--amber)}
   .brand .wm{display:inline-flex}
   .nav-links{display:flex;gap:30px;align-items:center}
-  .nav-links a{color:var(--muted);font-size:14px;font-weight:500;transition:color .2s}
-  .nav-links a:hover{color:var(--txt)}
+  .nav-links a:not(.nav-cta){color:var(--muted);font-size:14px;font-weight:500;transition:color .2s}
+  .nav-links a:not(.nav-cta):hover{color:var(--txt)}
   .nav-cta{
     font-family:var(--sans);font-weight:600;font-size:14px;
-    padding:9px 18px;border-radius:9px;color:#000;background:var(--amber);
+    padding:9px 18px;border-radius:9px;color:#000 !important;background:var(--amber);
     transition:transform .15s,box-shadow .25s;box-shadow:0 0 0 rgba(58,214,196,0);
   }
   .nav-cta:hover{transform:translateY(-1px);box-shadow:0 8px 26px -8px var(--glow)}
@@ -217,10 +217,10 @@
   .dna-detail .chip{border:1px solid var(--border);border-radius:5px;padding:2px 7px;font-size:9.5px;color:var(--muted)}
   .dna-detail .chip b{color:var(--txt)}
   .dna-detail .src{font-size:9px;color:var(--faint);letter-spacing:.04em;padding-bottom:8px}
-  .dna-detail .stat{font-size:10.5px;line-height:1.5;margin:3px 0}
-  .dna-detail .stat b{color:var(--txt);font-weight:700}
-  .dna-detail .stat .sk{color:var(--muted);font-weight:600}
-  .dna-detail .stat .sn{color:var(--faint)}
+  .dna-detail .dline{font-size:10.5px;line-height:1.5;margin:3px 0}
+  .dna-detail .dline b{color:var(--txt);font-weight:700}
+  .dna-detail .dline .sk{color:var(--muted);font-weight:600}
+  .dna-detail .dline .sn{color:var(--faint)}
   /* order executions */
   .term-exec{padding:14px 16px;border-top:1px solid var(--border);overflow-x:auto}
   .t-ex{width:100%;border-collapse:collapse;font-size:10.5px}
@@ -695,8 +695,8 @@
           '<div class="row"><span class="ud"><i style="background:'+a.col+';box-shadow:0 0 7px '+a.col+'"></i>'+a.u+'</span>'+
           '<span class="reg '+a.cls+'">'+a.reg+'</span><span class="desc">'+a.short+'</span><span class="chev">▾</span></div>'+
           '<div class="dna-detail"><div class="dd">'+a.dd+'</div>'+
-            '<div class="stat"><span class="sk">σ</span> <b>'+a.sig+'</b> <span class="sn">— annualised 20-day realised volatility. '+a.sigN+'</span></div>'+
-            '<div class="stat"><span class="sk">ret60</span> <b>'+a.ret+'</b> <span class="sn">— total return over the last 60 trading days. '+a.retN+'</span></div>'+
+            '<div class="dline"><span class="sk">σ</span> <b>'+a.sig+'</b> <span class="sn">— annualised 20-day realised volatility. '+a.sigN+'</span></div>'+
+            '<div class="dline"><span class="sk">ret60</span> <b>'+a.ret+'</b> <span class="sn">— total return over the last 60 trading days. '+a.retN+'</span></div>'+
             '<div class="src">As of '+a.asof+' &#183; nearest analogue: '+a.ana+' &#183; source: '+a.src+'</div></div>'+
         '</div>'
       )).join('');

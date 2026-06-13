@@ -37,7 +37,7 @@ Each expanded row reads: `σ {val} — annualised 20-day realised volatility. {�
 - [ ] **Market DNA**: click each row → detail expands with the correct text above; auto-rotation cycles rows. Cross-check against the table in §2.
 - [ ] Brand reads `Nodal.` with **no space** before the dot (nav + footer); two amber squares logo.
 - [ ] Favicon shows the two amber squares in the browser tab.
-- [ ] CTA buttons amber with **black** text.
+- [ ] CTA buttons amber with **black** text — in **both** the hero and the **nav** ("Launch terminal" top-right). Watch for the specificity trap: `.nav-links a` must not recolour the CTA grey.
 - [ ] `prefers-reduced-motion` on → animations stop, caret hidden, layout intact.
 - [ ] Mobile width (~380px): left terminal column hidden, watchlist + Market DNA + exec readable.
 
